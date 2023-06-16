@@ -13,7 +13,7 @@ const Login = () => {
 
     const UsersCol = collection(db, 'users');
     const handleGoogleSignIn = () => {
-        const provider = new GoogleAuthProvider();
+        const provider = new GoogleAuthProvider();        
         signInWithPopup(auth, provider)
             .then((result) => {
                 const q = query(UsersCol, where("email", "==", result.user.email));
@@ -24,9 +24,9 @@ const Login = () => {
                             el.push({ ...doc.data(), id: doc.id });
                         })
                         if (el.length === 0) {
-                            addDoc(UsersCol,{
-                                email:result.user.email,
-                                docs:[],
+                            addDoc(UsersCol, {
+                                email: result.user.email,
+                                docs: [],
                             })
                         }
                     });
@@ -47,9 +47,9 @@ const Login = () => {
 
     return (
         <div className='Login'>
-            <div style={{width:'40%' , fontSize:'2.6em' , fontWeight:'600'}}>Unlock the power of words and ideas. Login to embark on a seamless journey of editing and collaboration.</div>
+            <div style={{ width: '40%', fontSize: '2.6em', fontWeight: '600' }}>Unlock the power of words and ideas. Login to embark on a seamless journey of editing and collaboration.</div>
             <div className='outer' onClick={handleGoogleSignIn}>
-                <div className='icon' ><FcGoogle style={{padding:'0',margin:'0' , fontSize:'2.75em'}}/></div>
+                <div className='icon' ><FcGoogle style={{ padding: '0', margin: '0', fontSize: '2.75em' }} /></div>
                 <div className='inner'>Sign in with Google</div>
             </div>
         </div>
